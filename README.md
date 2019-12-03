@@ -20,6 +20,7 @@ jobs:
       - uses: bacongobbler/azure-blob-storage-upload@master
         with:
           source_dir: _dist
+          container_name: www
           connection_string: ${{ secrets.ConnectionString }}
           extra_args: '--pattern *.tar.gz*'
 ```
@@ -29,6 +30,7 @@ jobs:
 | Key | Value |
 | ------------- | ------------- |
 | `source_dir` | The name of the directory you want to upload |
+| `container_name` | The name of the storage account container these assets will be uploaded to. |
 | `connection_string` | Your Azure Blob Storage connection string. |
 
 ### Optional Variables

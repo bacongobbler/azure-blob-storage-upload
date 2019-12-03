@@ -7,8 +7,13 @@ if [ -z "$INPUT_SOURCE_DIR" ]; then
   exit 1
 fi
 
+if [ -z "$INPUT_CONTAINER_NAME" ]; then
+  echo "storage account container name is not set. Quitting."
+  exit 1
+fi
+
 if [ -z "$INPUT_CONNECTION_STRING" ]; then
-  echo "connection string is not set. Quitting."
+  echo "storage account connection string is not set. Quitting."
   exit 1
 fi
 
@@ -16,4 +21,4 @@ EXTRA_ARGS=${INPUT_EXTRA_ARGS:""}
 
 
 # Upload source to storage
-az storage blob upload-batch --connection-string ${INPUT_CONNECTION_STRING} -s ${INPUT_SOURCE_DIR} ${EXTRA_ARGS}
+az storage blob upload-batch --connection-string ${INPUT_CONNECTION_STRING} -s ${INPUT_SOURCE_DIR} -d ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS}
