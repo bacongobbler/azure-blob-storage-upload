@@ -16,7 +16,7 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v1.0.0
       - uses: bacongobbler/azure-blob-storage-upload@master
         with:
           source_dir: _dist
