@@ -16,4 +16,4 @@ EXTRA_ARGS=${INPUT_EXTRA_ARGS:""}
 
 
 # Upload source to storage
-az storage blob upload-batch --connection-string ${INPUT_CONNECTION_STRING} -s ${INPUT_SOURCE_DIR} --account-name ${AZURE_STORAGE_ACCOUNT_NAME} ${EXTRA_ARGS}
+az storage blob upload-batch --connection-string ${INPUT_CONNECTION_STRING} -s ${INPUT_SOURCE_DIR} ${EXTRA_ARGS}
