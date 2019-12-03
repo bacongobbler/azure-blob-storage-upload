@@ -5,13 +5,13 @@ branding:
   icon: "box"
   color: "green"
 inputs:
-  source-dir:
+  source_dir:
     description: "The name of the directory you want to upload"
     required: true
-  connection-string:
+  connection_string:
     description: "Your Azure Blob Storage connection string"
     required: true
-  extra-args:
+  extra_args:
     description: "extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path`"
     required: false
 runs:

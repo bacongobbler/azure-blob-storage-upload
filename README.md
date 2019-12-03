@@ -19,23 +19,23 @@ jobs:
       - uses: actions/checkout@master
       - uses: bacongobbler/azure-blob-storage-upload@master
         with:
-          source-dir: _dist
-          connection-string: ${{ secrets.ConnectionString }}
-          extra-args: '--pattern *.tar.gz*'
+          source_dir: _dist
+          connection_string: ${{ secrets.ConnectionString }}
+          extra_args: '--pattern *.tar.gz*'
 ```
 
 ### Required Variables
 
 | Key | Value |
 | ------------- | ------------- |
-| `source-dir` | The name of the directory you want to upload |
-| `connection-string` | Your Azure Blob Storage connection string. |
+| `source_dir` | The name of the directory you want to upload |
+| `connection_string` | Your Azure Blob Storage connection string. |
 
 ### Optional Variables
 
 | Key | Value |
 | ------------- | ------------- |
-| `extra-args` | extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path`. |
+| `extra_args` | extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path`. |
 
 ## License
 
