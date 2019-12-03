@@ -1,0 +1,19 @@
+name: "Azure Blob Storage Upload"
+author: "Matthew Fisher <matt.fisher@microsoft.com>"
+description: "Uploads assets to Azure Blob Storage"
+branding:
+  icon: "box"
+  color: "green"
+inputs:
+  source-dir:
+    description: "The name of the directory you want to upload"
+    required: true
+  connection-string:
+    description: "Your Azure Blob Storage connection string"
+    required: true
+  extra-args:
+    description: "extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path`"
+    required: false
+runs:
+  using: "docker"
+  image: "Dockerfile"
