@@ -22,7 +22,7 @@ jobs:
           source_dir: _dist
           container_name: www
           connection_string: ${{ secrets.ConnectionString }}
-          extra_args: '--pattern "*.tar.gz*"'
+          extra_args: '--pattern *.tar.gz*'
 ```
 
 ### Required Variables
