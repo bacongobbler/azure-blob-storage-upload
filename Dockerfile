@@ -1,6 +1,6 @@
 FROM microsoft/azure-cli
 
-LABEL "com.github.actions.name"="Uploads assets to Azure Blob Storage"
+LABEL "com.github.actions.name"="azure-blob-storage-upload"
 LABEL "com.github.actions.description"="Uploads assets to Azure Blob Storage"
 LABEL "com.github.actions.icon"="box"
 LABEL "com.github.actions.color"="green"
