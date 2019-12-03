@@ -29,7 +29,7 @@ jobs:
 
 | Key | Value |
 | ------------- | ------------- |
-| `source_dir` | The name of the directory you want to upload |
+| `source_dir` | The name of the directory you want to upload. |
 | `container_name` | The name of the storage account container these assets will be uploaded to. |
 | `connection_string` | Your Azure Blob Storage connection string. |
 
