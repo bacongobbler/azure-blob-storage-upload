@@ -30,8 +30,13 @@ jobs:
 | ------------- | ------------- |
 | `source-dir` | The name of the directory you want to upload |
 | `connection-string` | Your Azure Blob Storage connection string. |
+
+### Optional Variables
+
+| Key | Value |
+| ------------- | ------------- |
 | `extra-args` | extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path`. |
 
 ## License
 
-This project is distributed under the [MIT license](LICENSE.md).
+This project is distributed under the [Apache 2 license](LICENSE.md).
