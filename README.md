@@ -10,7 +10,10 @@ Place in a `.yml` file such as this one in your `.github/workflows` folder. [Ref
 
 ```yaml
 name: Upload To Azure Blob Storage
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   upload:
@@ -25,24 +28,33 @@ jobs:
           extra_args: '--pattern *.tar.gz'
 ```
 
-If you want to synchronize local and remote state (for example, if you are publishing a static website), enable the `sync` flag:
+If you want to synchronize local and remote state (for example, if you are publishing a static website), use the `sync` flag.
+
+Here's an example that will generate and upload a [Hugo](https://gohugo.io/) static site to Azure Blob Storage on every push to master:
 
 ```yaml
 name: Upload To Azure Blob Storage
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - uses: chabad360/hugo-actions@master
+        with:
+          buildPath: 'public'
+          hugoVersion: ''
+          args: ''
       - uses: bacongobbler/azure-blob-storage-upload@v1.1.0
         with:
-          source_dir: _dist
-          container_name: www
+          source_dir: 'public'
+          container_name: '$web'
           connection_string: ${{ secrets.ConnectionString }}
           sync: true
-          extra_args: '--include-pattern *.tar.gz'
 ```
 
 ### Required Variables
