@@ -20,7 +20,9 @@ fi
 EXTRA_ARGS=${INPUT_EXTRA_ARGS:""}
 
 VERB="upload-batch"
+CONTAINER_NAME_FLAG="--destination"
 if [ -z "$INPUT_SYNC" ]; then
   VERB="sync"
+  CONTAINER_NAME_FLAG="--container"
 fi
-az storage blob ${VERB} --connection-string ${INPUT_CONNECTION_STRING} -s ${INPUT_SOURCE_DIR} -d ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS}
+az storage blob ${VERB} --connection-string ${INPUT_CONNECTION_STRING} --source ${INPUT_SOURCE_DIR} ${CONTAINER_NAME_FLAG} ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS}
