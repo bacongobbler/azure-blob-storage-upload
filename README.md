@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: bacongobbler/azure-blob-storage-upload@v1.1.0
+      - uses: bacongobbler/azure-blob-storage-upload@v1.1.1
         with:
           source_dir: _dist
           container_name: www
@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: chabad360/hugo-actions@master
-      - uses: bacongobbler/azure-blob-storage-upload@v1.1.0
+      - uses: bacongobbler/azure-blob-storage-upload@v1.1.1
         with:
           source_dir: 'public'
           container_name: '$web'
