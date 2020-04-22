@@ -5,17 +5,20 @@ branding:
   icon: "box"
   color: "green"
 inputs:
-  source_dir:
-    description: "The name of the directory you want to upload"
+  connection_string:
+    description: "The connection string for the storage account"
     required: true
   container_name:
     description: "The name of the storage account container these assets will be uploaded to"
     required: true
-  connection_string:
-    description: "The connection string for the storage account"
+  source_dir:
+    description: "The name of the directory you want to upload"
     required: true
   extra_args:
-    description: "extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path`"
+    description: "Extra arguments that can be passed to `az storage blob upload-batch|sync`. Useful for passing flags like `--pattern` or `--destination-path`"
+    required: false
+  sync:
+    description: "Use `az storage blob sync` to synchronize blobs recursively"
     required: false
 runs:
   using: "docker"

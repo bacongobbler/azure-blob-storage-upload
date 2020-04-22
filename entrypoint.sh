@@ -19,6 +19,8 @@ fi
 
 EXTRA_ARGS=${INPUT_EXTRA_ARGS:""}
 
-
-# Upload source to storage
-az storage blob upload-batch --connection-string ${INPUT_CONNECTION_STRING} -s ${INPUT_SOURCE_DIR} -d ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS}
+VERB="upload-batch"
+if [ -z "$INPUT_SYNC" ]; then
+  VERB="sync"
+fi
+az storage blob ${VERB} --connection-string ${INPUT_CONNECTION_STRING} -s ${INPUT_SOURCE_DIR} -d ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS}
