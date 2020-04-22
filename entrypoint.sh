@@ -17,6 +17,10 @@ if [ -z "$INPUT_CONNECTION_STRING" ]; then
   exit 1
 fi
 
+if [ "$INPUT_CLEAN_CONTAINER" = "true" ]; then
+  az storage blob delete-batch --connection-string ${INPUT_CONNECTION_STRING} -s ${INPUT_CONTAINER_NAME}
+fi
+
 EXTRA_ARGS=${INPUT_EXTRA_ARGS:""}
 
 

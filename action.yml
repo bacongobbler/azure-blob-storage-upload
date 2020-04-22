@@ -17,6 +17,9 @@ inputs:
   extra_args:
     description: "extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path`"
     required: false
+  clean_container:
+    description: "Whether to clean the destination container before uploading the source directory"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
