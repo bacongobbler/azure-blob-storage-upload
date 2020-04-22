@@ -45,10 +45,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: chabad360/hugo-actions@master
-        with:
-          buildPath: 'public'
-          hugoVersion: ''
-          args: ''
       - uses: bacongobbler/azure-blob-storage-upload@v1.1.0
         with:
           source_dir: 'public'
