@@ -14,7 +14,6 @@ on:
   push:
     branches:
       - master
-
 jobs:
   upload:
     runs-on: ubuntu-latest
@@ -38,7 +37,6 @@ on:
   push:
     branches:
       - master
-
 jobs:
   upload:
     runs-on: ubuntu-latest
