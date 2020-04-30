@@ -19,7 +19,7 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - uses: bacongobbler/azure-blob-storage-upload@v1.1.1
         with:
           source_dir: _dist
@@ -43,7 +43,7 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - uses: chabad360/hugo-actions@master
       - uses: bacongobbler/azure-blob-storage-upload@v1.1.1
         with:
