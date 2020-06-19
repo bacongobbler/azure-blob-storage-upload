@@ -25,9 +25,10 @@ jobs:
           container_name: www
           connection_string: ${{ secrets.ConnectionString }}
           extra_args: '--pattern *.tar.gz'
+          sync: false
 ```
 
-If you want to synchronize local and remote state (for example, if you are publishing a static website), use the `sync` flag.
+If you want to synchronize local and remote state (for example, if you are publishing a static website), enable the `sync` flag.
 
 Here's an example that will generate and upload a [Hugo](https://gohugo.io/) static site to Azure Blob Storage on every push to master:
 
