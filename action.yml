@@ -11,6 +11,9 @@ inputs:
   sas_token:
     description: "The shared access signature token for the storage account. Either connection_string or sas_token must be supplied"
     required: false
+  account_name:
+    description: "The name of the storage account. Required if sas_token is used"
+    required: false
   container_name:
     description: "The name of the storage account container these assets will be uploaded to"
     required: true
