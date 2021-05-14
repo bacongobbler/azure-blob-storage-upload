@@ -20,11 +20,11 @@ elif ! [ -z "$INPUT_SAS_TOKEN" ]; then
   if ! [ -z "$INPUT_ACCOUNT_NAME" ]; then
     CONNECTION_METHOD="--sas-token $INPUT_SAS_TOKEN --account-name $INPUT_ACCOUNT_NAME"
   else
-    echo "account_name is required if using an sas-token. account_name is not set. Quitting."
+    echo "account_name is required if using a sas_token. account_name is not set. Quitting."
     exit 1
   fi
 else
-  echo "either connection-string or sas-token are required and neither is set. Quitting."
+  echo "either connection_string or sas_token are required and neither is set. Quitting."
   exit 1
 fi
 
