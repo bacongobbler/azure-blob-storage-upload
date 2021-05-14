@@ -12,12 +12,21 @@ if [ -z "$INPUT_CONTAINER_NAME" ]; then
   exit 1
 fi
 
-if [ -z "$INPUT_CONNECTION_STRING" ]; then
-  echo "storage account connection string is not set. Quitting."
+CONNECTION_METHOD=""
+
+if ! [ -z "$INPUT_CONNECTION_STRING" ]; then
+  CONNECTION_METHOD="--connection-string $INPUT_CONNECTION_STRING"
+elif ! [ -z "$INPUT_SAS_TOKEN" ]; then
+  CONNECTION_METHOD="--sas-token $INPUT_SAS_TOKEN --account-name jeft87m12yrdvja42zw0sp47"
+else
+  echo "either connection-string or sas-token are required and neither is set. Quitting."
   exit 1
 fi
 
-EXTRA_ARGS=${INPUT_EXTRA_ARGS:""}
+EXTRA_ARGS=""
+if [ -z "$INPUT_EXTRA_ARGS" ]; then
+  EXTRA_ARGS=${INPUT_EXTRA_ARGS}
+fi
 
 VERB="upload-batch"
 CONTAINER_NAME_FLAG="--destination"
@@ -25,4 +34,5 @@ if [ -z "$INPUT_SYNC" ]; then
   VERB="sync"
   CONTAINER_NAME_FLAG="--container"
 fi
-az storage blob ${VERB} --connection-string ${INPUT_CONNECTION_STRING} --source ${INPUT_SOURCE_DIR} ${CONTAINER_NAME_FLAG} ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS}
+
+az storage blob ${VERB} ${CONNECTION_METHOD} --source ${INPUT_SOURCE_DIR} ${CONTAINER_NAME_FLAG} ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS}

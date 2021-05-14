@@ -6,8 +6,11 @@ branding:
   color: "green"
 inputs:
   connection_string:
-    description: "The connection string for the storage account"
-    required: true
+    description: "The connection string for the storage account. Used if value is set. Either connection_string or sas_token must be supplied"
+    required: false
+  sas_token:
+    description: "The shared access signature token for the storage account. Either connection_string or sas_token must be supplied"
+    required: false
   container_name:
     description: "The name of the storage account container these assets will be uploaded to"
     required: true
