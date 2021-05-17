@@ -29,7 +29,7 @@ else
 fi
 
 EXTRA_ARGS=""
-if [ -z "$INPUT_EXTRA_ARGS" ]; then
+if ! [ -z "$INPUT_EXTRA_ARGS" ]; then
   EXTRA_ARGS=${INPUT_EXTRA_ARGS}
 fi
 
