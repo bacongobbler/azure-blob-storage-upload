@@ -13,13 +13,13 @@ name: Upload To Azure Blob Storage
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: bacongobbler/azure-blob-storage-upload@v1.1.1
+      - uses: bacongobbler/azure-blob-storage-upload@v1.2.0
         with:
           source_dir: _dist
           container_name: www
@@ -37,14 +37,14 @@ name: Upload To Azure Blob Storage
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: chabad360/hugo-actions@master
-      - uses: bacongobbler/azure-blob-storage-upload@v1.1.1
+      - uses: bacongobbler/azure-blob-storage-upload@v1.2.0
         with:
           source_dir: 'public'
           container_name: '$web'
@@ -66,6 +66,7 @@ jobs:
 | Key          | Value                                                                                                                                   |
 |--------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `extra_args` | Extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path` |
+| `sas_token`  | The shared access signature token for the storage account. Either connection\_string or sas\_token must be supplied                       |
 
 ## License
 
