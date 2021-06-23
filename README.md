@@ -70,4 +70,4 @@ jobs:
 
 ## License
 
-This project is distributed under the [Apache 2 license](LICENSE.md).
+This project is distributed under the [Apache 2 license](LICENSE).
