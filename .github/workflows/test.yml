@@ -11,9 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: ./
+    - id: upload
+      uses: ./
       with:
         source_dir: tests/files
         container_name: test
         connection_string: '${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}'
         sync: true
+    - run: echo blobs-list ${{ steps.upload.outputs.blobs }}
+      shell: bash
