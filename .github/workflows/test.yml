@@ -1,0 +1,19 @@
+name: "Integration Tests"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./
+      with:
+        source_dir: tests/files
+        container_name: test
+        connection_string: '${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}'
+        sync: true
