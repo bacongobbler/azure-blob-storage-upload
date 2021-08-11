@@ -26,6 +26,9 @@ inputs:
   sync:
     description: "Use `az storage blob sync` to synchronize blobs recursively"
     required: true
+outputs:
+  blobs:
+    description: "The list of blobs uploaded"
 runs:
   using: "docker"
   image: "Dockerfile"
