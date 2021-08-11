@@ -1,0 +1,1 @@
+docker build -t az-blob-storage-upload ../
