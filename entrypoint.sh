@@ -40,6 +40,10 @@ if [ -z "$INPUT_SYNC" ]; then
   CONTAINER_NAME_FLAG="--container"
 fi
 
-UPLOAD=`az storage blob ${VERB} ${CONNECTION_METHOD} --source ${INPUT_SOURCE_DIR} ${CONTAINER_NAME_FLAG} ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS} --output json`
+az storage blob ${VERB} ${CONNECTION_METHOD} \
+  --source ${INPUT_SOURCE_DIR} ${CONTAINER_NAME_FLAG} ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS} \
+  --output json > upload.json
 
-echo "::set-output name=blobs::$UPLOAD"
+JSON=`jq -c . upload.json`
+
+echo "::set-output name=blobs::'$JSON'"
