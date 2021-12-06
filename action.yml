@@ -1,5 +1,5 @@
 name: "Azure Blob Storage Upload"
-author: "Matthew Fisher <matt.fisher@microsoft.com>"
+author: "Matthew Fisher <matt.fisher@fishworks.io>"
 description: "Uploads assets to Azure Blob Storage"
 branding:
   icon: "box"
