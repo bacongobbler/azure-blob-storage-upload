@@ -28,10 +28,10 @@ inputs:
     required: false
   sync:
     description: "Use `az storage blob sync` to synchronize blobs recursively"
-    required: true
+    required: false
   overwrite:
     description: "Overwrite existing files in the destination container. Defaults to false"
-    required: true
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"

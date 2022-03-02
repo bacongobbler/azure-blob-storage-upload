@@ -26,7 +26,7 @@ jobs:
           connection_string: ${{ secrets.ConnectionString }}
           extra_args: '--pattern *.tar.gz'
           # WARNING: this will overwrite existing blobs in your blob storage
-          overwrite: true 
+          overwrite: 'true'
 ```
 
 If you want to synchronize local and remote state (for example, if you are publishing a static website), enable the `sync` flag.
@@ -50,7 +50,7 @@ jobs:
           source_dir: 'public'
           container_name: '$web'
           connection_string: ${{ secrets.ConnectionString }}
-          sync: true
+          sync: 'true'
 ```
 
 ### Required Variables
@@ -60,8 +60,7 @@ jobs:
 | `source_dir`        | The name of the directory you want to upload                               |
 | `container_name`    | The name of the storage account container these assets will be uploaded to |
 | `connection_string` | Your Azure Blob Storage connection string                                  |
-| `sync`              | Use `az storage blob sync` to synchronize blobs recursively                |
-| `overwrite`         | Overwrite existing files in the destination container                      |
+
 
 ### Optional Variables
 
@@ -69,6 +68,8 @@ jobs:
 |--------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `extra_args` | Extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path` |
 | `sas_token`  | The shared access signature token for the storage account. Either connection\_string or sas\_token must be supplied                     |
+| `sync`              | Use `az storage blob sync` to synchronize blobs recursively. Defaults to false (`az storage blob upload-batch`)                  |
+| `overwrite`         | Overwrite existing files in the destination container. Defaults to false                                                         |
 
 ## License
 

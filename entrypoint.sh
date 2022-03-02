@@ -29,7 +29,7 @@ else
 fi
 
 ARG_OVERWRITE=""
-if [[ -z ${INPUT_OVERWRITE} ]]; then
+if ! [[ -z ${INPUT_OVERWRITE} ]]; then
   ARG_OVERWRITE="--overwrite true"
 fi
 
@@ -40,7 +40,7 @@ fi
 
 VERB="upload-batch"
 CONTAINER_NAME_FLAG="--destination"
-if [[ -z ${INPUT_SYNC} ]]; then
+if ! [[ -z ${INPUT_SYNC} ]]; then
   VERB="sync"
   CONTAINER_NAME_FLAG="--container"
 fi
