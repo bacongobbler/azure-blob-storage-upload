@@ -60,14 +60,15 @@ jobs:
 | `source_dir`        | The name of the directory you want to upload                               |
 | `container_name`    | The name of the storage account container these assets will be uploaded to |
 | `connection_string` | Your Azure Blob Storage connection string                                  |
-| `sync`              | Use `az storage blob sync` to synchronize blobs recursively                |
 
 ### Optional Variables
 
 | Key          | Value                                                                                                                                   |
 |--------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `extra_args` | Extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path` |
-| `sas_token`  | The shared access signature token for the storage account. Either connection\_string or sas\_token must be supplied                       |
+| `sas_token`  | The shared access signature token for the storage account. Either connection\_string or sas\_token must be supplied                     |
+| `sync`       | Use `az storage blob sync` to synchronize blobs recursively. Defaults to false (`az storage blob upload-batch`)                         |
+| `overwrite`  | Overwrite existing files in the destination container. Defaults to false                                                                |
 
 ## License
 
