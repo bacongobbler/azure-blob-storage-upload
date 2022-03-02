@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
 
@@ -28,24 +28,29 @@ else
   exit 1
 fi
 
+ARG_OVERWRITE=""
+if [[ -v ${INPUT_OVERWRITE} ]]; then
+  ARG_OVERWRITE="--overwrite true"
+fi
+
 EXTRA_ARGS=""
-if ! [ -z "$INPUT_EXTRA_ARGS" ]; then
+if [[ -v ${INPUT_EXTRA_ARGS} ]]; then
   EXTRA_ARGS=${INPUT_EXTRA_ARGS}
 fi
 
 VERB="upload-batch"
 CONTAINER_NAME_FLAG="--destination"
-if [ -z "$INPUT_SYNC" ]; then
+if [[ -v ${INPUT_SYNC} ]]; then
   VERB="sync"
   CONTAINER_NAME_FLAG="--container"
 fi
 
 CLI_VERSION=""
-if ! [ -z "$INPUT_CLI_VERSION" ]; then
+if [[ -v ${INPUT_CLI_VERSION} ]]; then
   CLI_VERSION="==${INPUT_CLI_VERSION}"
 fi
 
 # install the azure cli
 pip install azure-cli${CLI_VERSION}
 
-az storage blob ${VERB} ${CONNECTION_METHOD} --source ${INPUT_SOURCE_DIR} ${CONTAINER_NAME_FLAG} ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS}
+az storage blob ${VERB} ${CONNECTION_METHOD} --source ${INPUT_SOURCE_DIR} ${CONTAINER_NAME_FLAG} ${INPUT_CONTAINER_NAME} ${ARG_OVERWRITE} ${EXTRA_ARGS}

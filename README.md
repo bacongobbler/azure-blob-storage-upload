@@ -25,7 +25,7 @@ jobs:
           container_name: www
           connection_string: ${{ secrets.ConnectionString }}
           extra_args: '--pattern *.tar.gz'
-          sync: false
+          overwrite: true
 ```
 
 If you want to synchronize local and remote state (for example, if you are publishing a static website), enable the `sync` flag.
