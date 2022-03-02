@@ -14,10 +14,10 @@ fi
 
 CONNECTION_METHOD=""
 
-if ! [[ -z "$INPUT_CONNECTION_STRING" ]; then
+if [[ -n "$INPUT_CONNECTION_STRING" ]]; then
   CONNECTION_METHOD="--connection-string $INPUT_CONNECTION_STRING"
-elif ! [[ -z "$INPUT_SAS_TOKEN" ]]; then
-  if ! [[ -z "$INPUT_ACCOUNT_NAME" ]]; then
+elif [[ -n "$INPUT_SAS_TOKEN" ]]; then
+  if [[ -n "$INPUT_ACCOUNT_NAME" ]]; then
     CONNECTION_METHOD="--sas-token $INPUT_SAS_TOKEN --account-name $INPUT_ACCOUNT_NAME"
   else
     echo "account_name is required if using a sas_token. account_name is not set. Quitting."
@@ -29,24 +29,24 @@ else
 fi
 
 ARG_OVERWRITE=""
-if ! [[ -z ${INPUT_OVERWRITE} ]]; then
+if [[ -n ${INPUT_OVERWRITE} ]]; then
   ARG_OVERWRITE="--overwrite true"
 fi
 
 EXTRA_ARGS=""
-if ! [[ -z ${INPUT_EXTRA_ARGS} ]]; then
+if [[ -n ${INPUT_EXTRA_ARGS} ]]; then
   EXTRA_ARGS=${INPUT_EXTRA_ARGS}
 fi
 
 VERB="upload-batch"
 CONTAINER_NAME_FLAG="--destination"
-if ! [[ -z ${INPUT_SYNC} ]]; then
+if [[ -n ${INPUT_SYNC} ]]; then
   VERB="sync"
   CONTAINER_NAME_FLAG="--container"
 fi
 
 CLI_VERSION=""
-if ! [[ -z ${INPUT_CLI_VERSION} ]]; then
+if [[ -n ${INPUT_CLI_VERSION} ]]; then
   CLI_VERSION="==${INPUT_CLI_VERSION}"
 fi
 
