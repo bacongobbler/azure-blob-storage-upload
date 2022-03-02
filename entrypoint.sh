@@ -40,4 +40,12 @@ if [ -z "$INPUT_SYNC" ]; then
   CONTAINER_NAME_FLAG="--container"
 fi
 
+CLI_VERSION=""
+if ! [ -z "$INPUT_CLI_VERSION" ]; then
+  CLI_VERSION="==${INPUT_CLI_VERSION}"
+fi
+
+# install the azure cli
+pip install azure-cli${CLI_VERSION}
+
 az storage blob ${VERB} ${CONNECTION_METHOD} --source ${INPUT_SOURCE_DIR} ${CONTAINER_NAME_FLAG} ${INPUT_CONTAINER_NAME} ${EXTRA_ARGS}
