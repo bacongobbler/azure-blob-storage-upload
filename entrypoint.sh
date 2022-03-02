@@ -29,24 +29,24 @@ else
 fi
 
 ARG_OVERWRITE=""
-if [[ -v ${INPUT_OVERWRITE} ]]; then
+if ! [[ -z ${INPUT_OVERWRITE} ]]; then
   ARG_OVERWRITE="--overwrite true"
 fi
 
 EXTRA_ARGS=""
-if [[ -v ${INPUT_EXTRA_ARGS} ]]; then
+if ! [[ -z ${INPUT_EXTRA_ARGS} ]]; then
   EXTRA_ARGS=${INPUT_EXTRA_ARGS}
 fi
 
 VERB="upload-batch"
 CONTAINER_NAME_FLAG="--destination"
-if [[ -v ${INPUT_SYNC} ]]; then
+if ! [[ -z ${INPUT_SYNC} ]]; then
   VERB="sync"
   CONTAINER_NAME_FLAG="--container"
 fi
 
 CLI_VERSION=""
-if [[ -v ${INPUT_CLI_VERSION} ]]; then
+if ! [[ -z ${INPUT_CLI_VERSION} ]]; then
   CLI_VERSION="==${INPUT_CLI_VERSION}"
 fi
 
