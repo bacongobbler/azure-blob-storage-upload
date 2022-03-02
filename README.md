@@ -25,6 +25,7 @@ jobs:
           container_name: www
           connection_string: ${{ secrets.ConnectionString }}
           extra_args: '--pattern *.tar.gz'
+          overwrite: true
           sync: false
 ```
 
