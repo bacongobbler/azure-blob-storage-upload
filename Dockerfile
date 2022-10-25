@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:3.10
 
 LABEL "com.github.actions.name"="azure-blob-storage-upload"
 LABEL "com.github.actions.description"="Uploads assets to Azure Blob Storage"
