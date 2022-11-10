@@ -5,9 +5,6 @@ branding:
   icon: "box"
   color: "green"
 inputs:
-  cli_version:
-    description: "If set, specifies the version of the Azure CLI to install. Defaults to latest"
-    required: false
   connection_string:
     description: "The connection string for the storage account. Used if value is set. Either connection_string or sas_token must be supplied"
     required: false
