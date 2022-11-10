@@ -65,7 +65,6 @@ jobs:
 | Key                 | Value                                                                                                                                   |
 |---------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `account_name`      | The name of the storage account. Required if `sas_token` is used                                                                        |
-| `cli_version`       | If set, specifies the version of the Azure CLI to install. Defaults to latest                                                           |
 | `connection_string` | The connection string for the storage account. Used if value is set. Either `connection_string` or `sas_token` must be supplied         |
 | `extra_args`        | Extra arguments that can be passed to `az storage blob upload-batch`. Useful for passing flags like `--pattern` or `--destination-path` |
 | `overwrite`         | Overwrite existing files in the destination container. Defaults to false                                                                |
