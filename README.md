@@ -18,7 +18,7 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: bacongobbler/azure-blob-storage-upload@main
         with:
           source_dir: _dist
@@ -30,28 +30,6 @@ jobs:
 ```
 
 If you want to synchronize local and remote state (for example, if you are publishing a static website), enable the `sync` flag.
-
-Here's an example that will generate and upload a [Hugo](https://gohugo.io/) static site to Azure Blob Storage on every push to master:
-
-```yaml
-name: Upload To Azure Blob Storage
-on:
-  push:
-    branches:
-      - main
-jobs:
-  upload:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: chabad360/hugo-actions@master
-      - uses: bacongobbler/azure-blob-storage-upload@main
-        with:
-          source_dir: 'public'
-          container_name: '$web'
-          connection_string: ${{ secrets.ConnectionString }}
-          sync: 'true'
-```
 
 ### Required Variables
 
