@@ -1,0 +1,62 @@
+name: Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get the PR diff
+        uses: GrantBirki/git-diff-action@v2.6.0
+        id: git-diff
+        with:
+          raw_diff_file_output: diff.txt
+          file_output_only: "true"
+
+      - name: Review code
+        id: code-review
+        run: |
+          # Get the diff
+          escaped_diff=$(cat ${{ steps.git-diff.outputs.raw-diff-path }} | jq -sRr @json | sed -e 's/^"//' -e 's/"$//')
+
+          # Send to OpenAI for review
+          response=$(curl -X POST https://api.openai.com/v1/chat/completions \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
+              -d '{
+                  "model": "gpt-4-turbo-preview",
+                  "messages": [
+                      {
+                          "role": "system",
+                          "content": "Review this pull request and suggest improvements. Check for any logical and security concerns with the code. If you do not have any recommendations, respond with \"Looks good to me!\"."
+                      },
+                      {
+                          "role": "user",
+                          "content": "```\n'"$escaped_diff"'\n```\n"
+                      }
+                  ]
+              }')
+
+          # Extract the review
+          comments=$(echo $response | jq -r '.choices[0].message.content' | jq -sRr @json)
+
+          echo "comments=$(echo $comments)" >> $GITHUB_OUTPUT
+
+      - name: Post review comments
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: ${{ steps.code-review.outputs.comments }}
+            })
